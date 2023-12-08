@@ -22,7 +22,7 @@ To start the command interpreter, follow these steps:
 
 4 - Run the command interpreter:
 
-`python interpreter.py`
+`python console.py`
 
 ## How to Use the Command Interpreter
 The command interpreter supports a variety of commands. Here are some examples:
