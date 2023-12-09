@@ -165,7 +165,6 @@ class HBNBCommand(cmd.Cmd):
             elif args[1].split("(")[0] == "update":
                 args[1] = args[1].split("(")[1][:-1]
                 params = args[1].split(", ")
-                
                 if len(params) == 3:
                     self.do_update(args[0] + " " + params[0] + " " + params[1] + " " + params[2])
                 if len(params) == 2:

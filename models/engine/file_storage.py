@@ -8,6 +8,9 @@ from models.user import User
 class FileStorage:
     """
     FileStorage class
+    attributes:
+        __file_path: path to the JSON file
+        __objects: dictionary of objects
     """
     __file_path = 'file.json'
     __objects = {}
@@ -42,6 +45,6 @@ class FileStorage:
             with open(self.__file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 for key, value in data.items():
-                    self.__objects[key] = BaseModel(**value)
+                    self.__objects[key] = eval(value['__class__'])(**value)
         else:
             pass
