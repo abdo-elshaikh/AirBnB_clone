@@ -163,9 +163,14 @@ class HBNBCommand(cmd.Cmd):
             elif args[1].split("(")[0] == "destroy":
                 self.do_destroy(args[0] + " " + args[1].split("(")[1][:-1])
             elif args[1].split("(")[0] == "update":
-                self.do_update(
-                    args[0] + " " + args[1].split("(")[1][:-1] + " "
-                )
+                args[1] = args[1].split("(")[1][:-1]
+                params = args[1].split(", ")
+                
+                if len(params) == 3:
+                    self.do_update(args[0] + " " + params[0] + " " + params[1] + " " + params[2])
+                if len(params) == 2:
+                    for k, v in params[1].items():
+                        self.do_update(args[0] + " " + params[0] + " " + k + " " + v)              
             else:
                 print("*** Unknown syntax: {}".format(line))
 
