@@ -109,8 +109,9 @@ class HBNBCommand(cmd.Cmd):
         print(instance)
 
     def do_update(self, line):
-        """Updates an instance based on the class name and id
-        by adding or updating attribute"""
+        """Updates an instance based on the class name
+        and id by adding or updating attribute
+        """
         if not line:
             print("** class name missing **")
             return
@@ -132,7 +133,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         setattr(models.storage.all()[key], args[2], args[3])
-        models.storage.all()[key].save()
+        models.storage.save()
 
     def do_count(self, line):
         """Prints the number of instances of a class"""
@@ -162,7 +163,8 @@ class HBNBCommand(cmd.Cmd):
             elif args[1].split("(")[0] == "destroy":
                 self.do_destroy(args[0] + " " + args[1].split("(")[1][:-1])
             elif args[1].split("(")[0] == "update":
-                self.do_update(args[0] + " " + args[1].split("(")[1])
+                args[1] = args[1].replace("update(", "update(" + args[0] + " ")
+                self.do_update(args[1])
             else:
                 print("*** Unknown syntax: {}".format(line))
 
